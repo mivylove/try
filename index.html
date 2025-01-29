@@ -92,20 +92,32 @@
 
     // Call the AWS API Gateway endpoint
     fetch('https://ccgpyvocx5.execute-api.ap-south-1.amazonaws.com/prod', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        phone_number: "+916396732226",
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Uncomment below line if your API is secured with an API key or other authorization
+        // 'x-api-key': 'your-api-key-here'
+      },
+      body: JSON.stringify({
+        phone_number: "+916396732226", // Ensure the phone number is correct and in E.164 format
         message: "Yayyy"
+      })
     })
-})
-.then(response => response.json())
-.then(data => console.log('Message sent:', data))
-.catch(error => console.error('Error:', error));
-
-});
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Message sent:', data);
+      // You can add a success message here, e.g., a toast notification
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Something went wrong. Please try again!');
+    });
+  });
   </script>  
 </body>
 </html>
