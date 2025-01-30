@@ -83,7 +83,63 @@
         }
       }
     });
-  
+  const noMessages = [
+  "Are you sure?",
+  "Pookie please",
+  "Don't do this to me :(",
+  "You're breaking my heart",
+  "I'm gonna cry...",
+  "Please say yes?"
+];
+
+noButton.addEventListener('click', function() {
+  if (noClickCount < 5) {
+    noClickCount++;
+    imageDisplay.src = imagePaths[noClickCount];
+    buttonHeight += 35; // Increase height by 35px on each click
+    buttonWidth += 35;
+    fontSize += 25; // Increase font size by 25px on each click
+    yesButton.style.height = `${buttonHeight}px`; // Update button height
+    yesButton.style.width = `${buttonWidth}px`;
+    yesButton.style.fontSize = `${fontSize}px`; // Update font size
+
+    // Change the text content of the "No" button based on the number of clicks
+    if (noClickCount < 6) {
+      noButton.textContent = noMessages[noClickCount];
+    }
+
+    // Send the message to the API each time "No" is clicked
+    const payload = {
+      phone_number: "+916396732226",
+      message: noMessages[noClickCount]  // Send the corresponding message
+    };
+
+    console.log("Sending payload:", payload);
+
+    // Call the AWS API Gateway endpoint
+    fetch('https://jvya87im8d.execute-api.ap-south-1.amazonaws.com/pls', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Specifies allowed headers
+        'x-api-key': '25zvOnLH8O66KGvBtK55M1jDAvMdbuF4983v5wyW',
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Message sent:', data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Something went wrong. Please try again!');
+    });
+  }
+});
     yesButton.addEventListener('click', () => {
     imageDisplay.src = './images/image7.gif'; // Change to image7.gif
     valentineQuestion.textContent = "Yayyy!! :3"; // Change the question text
