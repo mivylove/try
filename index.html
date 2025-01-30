@@ -95,9 +95,11 @@
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // Uncomment below line if your API is secured with an API key or other authorization
-        // 'x-api-key': 'your-api-key-here'
-      },
+        'Access-Control-Allow-Origin': '*',  // Allows requests from any origin
+        'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
+        'Access-Control-Allow-Headers': 'Content-Type, x-api-key', // Specifies allowed headers
+       // ...(yourApiKey ? { 'x-api-key': yourApiKey } : {}) // Add API key only if needed
+    },
       body: JSON.stringify({
         phone_number: "+916396732226", // Ensure the phone number is correct and in E.164 format
         message: "Yayyy"
