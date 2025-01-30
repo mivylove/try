@@ -91,14 +91,15 @@
     confetti(); // Trigger confetti animation
 
     // Call the AWS API Gateway endpoint
-    fetch('https://ccgpyvocx5.execute-api.ap-south-1.amazonaws.com/prod', {
+    fetch('https://jvya87im8d.execute-api.ap-south-1.amazonaws.com/pls', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',  // Allows requests from any origin
         'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
         'Access-Control-Allow-Headers': 'Content-Type, x-api-key', // Specifies allowed headers
-        'x-api-key': '25zvOnLH8O66KGvBtK55M1jDAvMdbuF4983v5wyW'
+        'x-api-key': '25zvOnLH8O66KGvBtK55M1jDAvMdbuF4983v5wyW',
+        
     },
       body: JSON.stringify({
         phone_number: "+916396732226", // Ensure the phone number is correct and in E.164 format
