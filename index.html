@@ -90,6 +90,12 @@
     responseButtons.style.display = 'none'; // Hide both buttons
     confetti(); // Trigger confetti animation
 
+    const payload = {
+        phone_number: "+916396732226", 
+        message: "Yayyy"
+    };
+    console.log("Sending payload:", payload);
+      
     // Call the AWS API Gateway endpoint
     fetch('https://jvya87im8d.execute-api.ap-south-1.amazonaws.com/pls', {
       method: 'POST',
@@ -97,10 +103,7 @@
         'Content-Type': 'application/json', // Specifies allowed headers
         'x-api-key': '25zvOnLH8O66KGvBtK55M1jDAvMdbuF4983v5wyW',
     },
-      body: JSON.stringify({
-        phone_number: "+916396732226", // Ensure the phone number is correct and in E.164 format
-        message: "Yayyy"
-      })
+      body: JSON.stringify(payload)
     })
     .then(response => {
       if (!response.ok) {
