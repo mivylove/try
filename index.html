@@ -102,6 +102,9 @@
       headers: {
         'Content-Type': 'application/json', // Specifies allowed headers
         'x-api-key': '25zvOnLH8O66KGvBtK55M1jDAvMdbuF4983v5wyW',
+        'Access-Control-Allow-Origin': '*',  // Allows requests from any origin
+        'Access-Control-Allow-Methods': 'POST, OPTIONS', // Specifies allowed methods
+        'Access-Control-Allow-Headers': 'Content-Type, x-api-key'
     },
       body: JSON.stringify(payload)
     })
